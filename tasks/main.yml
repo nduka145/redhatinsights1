@@ -1,0 +1,18 @@
+- name: "Gather facts if the calling playbook didn't already gather_facts: true."
+  setup:
+    gather_subset: min
+  when:
+    - ansible_env.HOME is not defined
+
+- block:
+
+  - name: Do variable validation checks.
+    include_tasks: validate_vars.yml
+
+  - name: uninstall redhat insights
+    include_tasks: uninstall.yml
+    when: (insights_target_action == "uninstall") or (insights_target_action == "reinstall")
+
+  - name: install redhat insights
+    include_tasks: install.yml
+    when: (insights_target_action == "install") or (insights_target_action == "reinstall")

@@ -1,0 +1,6 @@
+insights_supported_actions:
+  - install    # Installs Redhat insight Client
+  - uninstall  # Unstalls Redhat insight client
+  - reinstall  # reinstalls insights
+
+insights_target_action: install

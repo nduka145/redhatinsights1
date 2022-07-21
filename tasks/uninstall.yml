@@ -1,0 +1,22 @@
+- name: unregister Insights Client
+  insights_register:
+    state: absent
+  become: true
+
+- name: uninstall 'insights-client'
+  yum:
+    name: insights-client
+    state: absent
+  become: true
+
+- name: Remove insight files and directory
+  file:
+    path: /etc/insights-client
+    state: absent
+  become: true
+
+- name: remove ansible custom facts directory
+  file:
+    path: /etc/ansible/facts.d/insights.fact
+    state: absent
+  become: true

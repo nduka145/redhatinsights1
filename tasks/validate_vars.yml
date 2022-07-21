@@ -1,0 +1,11 @@
+---
+
+- name: Required variable validation.  See ../defaults/main.yml for the validation options.
+  fail:
+    msg: "Variable nimsoft_target_action is not defined.  Valid values: {{ insights_supported_actions }}."
+  when: insights_target_action is not defined
+  
+- name: Required variable validation.  See ../defaults/main.yml for the validation options.
+  fail:
+    msg: "Variable insights_target_action has invalid value.  Must be one of {{ insights_supported_actions }}."
+  when: insights_target_action not in insights_supported_actions
